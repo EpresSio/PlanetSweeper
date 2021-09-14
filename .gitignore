@@ -10,6 +10,14 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+/PlanetSweeper/[Ll]ibrary/
+/PlanetSweeper/[Tt]emp/
+/PlanetSweeper/[Oo]bj/
+/PlanetSweeper/[Bb]uild/
+/PlanetSweeper/[Bb]uilds/
+/PlanetSweeper/[Ll]ogs/
+/PlanetSweeper/[Mm]emoryCaptures/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
