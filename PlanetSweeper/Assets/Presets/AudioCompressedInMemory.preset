@@ -16,87 +16,87 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_DefaultSettings.loadType
+    propertyPath: m_Defaultings.loadType
     value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_DefaultSettings.sampleRateSetting
+    propertyPath: m_Defaultings.sampleRateing
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_DefaultSettings.sampleRateOverride
+    propertyPath: m_Defaultings.sampleRateOverride
     value: 44100
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_DefaultSettings.compressionFormat
+    propertyPath: m_Defaultings.compressionFormat
     value: 2
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_DefaultSettings.quality
+    propertyPath: m_Defaultings.quality
     value: 0.7
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_DefaultSettings.conversionMode
+    propertyPath: m_Defaultings.conversionMode
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.size
+    propertyPath: m_PlatformingOverrides.Array.size
     value: 2
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[0].first
+    propertyPath: m_PlatformingOverrides.Array.data[0].first
     value: 4
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[0].second.loadType
+    propertyPath: m_PlatformingOverrides.Array.data[0].second.loadType
     value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[0].second.sampleRateSetting
+    propertyPath: m_PlatformingOverrides.Array.data[0].second.sampleRateing
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[0].second.sampleRateOverride
+    propertyPath: m_PlatformingOverrides.Array.data[0].second.sampleRateOverride
     value: 44100
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[0].second.compressionFormat
+    propertyPath: m_PlatformingOverrides.Array.data[0].second.compressionFormat
     value: 3
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[0].second.quality
+    propertyPath: m_PlatformingOverrides.Array.data[0].second.quality
     value: 0.7
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[0].second.conversionMode
+    propertyPath: m_PlatformingOverrides.Array.data[0].second.conversionMode
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[1].first
+    propertyPath: m_PlatformingOverrides.Array.data[1].first
     value: 7
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[1].second.loadType
+    propertyPath: m_PlatformingOverrides.Array.data[1].second.loadType
     value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[1].second.sampleRateSetting
+    propertyPath: m_PlatformingOverrides.Array.data[1].second.sampleRateing
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[1].second.sampleRateOverride
+    propertyPath: m_PlatformingOverrides.Array.data[1].second.sampleRateOverride
     value: 44100
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[1].second.compressionFormat
+    propertyPath: m_PlatformingOverrides.Array.data[1].second.compressionFormat
     value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[1].second.quality
+    propertyPath: m_PlatformingOverrides.Array.data[1].second.quality
     value: 0.7
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: m_PlatformSettingOverrides.Array.data[1].second.conversionMode
+    propertyPath: m_PlatformingOverrides.Array.data[1].second.conversionMode
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
