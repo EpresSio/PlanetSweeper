@@ -10,6 +10,7 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+/PlanetSweeper/.*/
 /PlanetSweeper/[Ll]ibrary/
 /PlanetSweeper/[Tt]emp/
 /PlanetSweeper/[Oo]bj/
