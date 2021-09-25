@@ -1,20 +1,55 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Geometry : MonoBehaviour
+public class Geometry
 {
+    public delegate (List<Vector3>, List<int>) TileSetup();
+
     List<GeometryTile> _tiles = new List<GeometryTile>();
     Dictionary<Vector3, List<GeometryTile>> _verticeTileDictionary = new Dictionary<Vector3, List<GeometryTile>>();
 
-    public void AddVertice(Vector3 vertice, GeometryTile tile)
+    public List<GeometryTile> Tiles { get { return _tiles; } }
+
+
+    public GeometryTile GenerateTile(TileSetup tileSetup)
     {
-        _tiles.Add(tile);
-        tile.Vertices.Add(vertice);
-        if (!_verticeTileDictionary.ContainsKey(vertice))
+        GeometryTile geometryTile = new GeometryTile();
+        _tiles.Add(geometryTile);
+
+        (List<Vector3>, List<int>) setup = tileSetup();
+        List<Vector3> vertices = setup.Item1;
+        List<int> triangles = setup.Item2;
+        geometryTile.Vertices.AddRange(vertices);
+        geometryTile.Triangles.AddRange(triangles);
+        AddVerticesToMap(geometryTile, vertices);
+        return geometryTile;
+    }
+
+    private void AddVerticesToMap(GeometryTile geometyTile, List<Vector3> vertices)
+    {
+        foreach (Vector3 vertice in vertices)
         {
-            _verticeTileDictionary.Add(vertice, new List<GeometryTile>());
+            if (!_verticeTileDictionary.ContainsKey(vertice))
+            {
+                _verticeTileDictionary.Add(vertice, new List<GeometryTile>());
+            }
+            _verticeTileDictionary[vertice].Add(geometyTile);
         }
-        _verticeTileDictionary[vertice].Add(tile);
+    }
+
+    public void RemoveTile(GeometryTile tile)
+    {
+        _tiles.Remove(tile);
+        foreach (Vector3 vertice in tile.Vertices)
+        {
+            List<GeometryTile> geometryTiles = _verticeTileDictionary[vertice];
+            geometryTiles.Remove(tile);
+            if (geometryTiles.Count == 0)
+            {
+                _verticeTileDictionary.Remove(vertice);
+            }
+        }
     }
 }
