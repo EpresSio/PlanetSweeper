@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Geometry
 {
-    public delegate (List<Vector3>, List<int>) TileSetup();
+    public delegate (List<Vector3>, List<int>, List<int>) TileSetup();
 
     List<GeometryTile> _tiles = new List<GeometryTile>();
     Dictionary<Vector3, List<GeometryTile>> _verticeTileDictionary = new Dictionary<Vector3, List<GeometryTile>>();
@@ -18,11 +18,13 @@ public class Geometry
         GeometryTile geometryTile = new GeometryTile();
         _tiles.Add(geometryTile);
 
-        (List<Vector3>, List<int>) setup = tileSetup();
+        (List<Vector3>, List<int>, List<int>) setup = tileSetup();
         List<Vector3> vertices = setup.Item1;
         List<int> triangles = setup.Item2;
+        List<int> helperVertices = setup.Item3;
         geometryTile.Vertices.AddRange(vertices);
         geometryTile.Triangles.AddRange(triangles);
+        geometryTile.HelperVerticeIndexes.AddRange(helperVertices);
         AddVerticesToMap(geometryTile, vertices);
         return geometryTile;
     }
@@ -51,5 +53,27 @@ public class Geometry
                 _verticeTileDictionary.Remove(vertice);
             }
         }
+    }
+
+    public Dictionary<Vector3, HashSet<Vector3>> CalucalteVerticeNeightbourHood() {
+        Dictionary<Vector3, HashSet<Vector3>> neighbourhood = new Dictionary<Vector3, HashSet<Vector3>>();
+        foreach (GeometryTile tile in _tiles)
+        {
+            Dictionary<Vector3, HashSet<Vector3>> tileNeighbourhood = tile.CalucalteVerticeNeightbourHood();
+            foreach (KeyValuePair<Vector3, HashSet<Vector3>> currentNeighbourhood in tileNeighbourhood)
+            {
+                Vector3 vertice = currentNeighbourhood.Key;
+                HashSet<Vector3> neighbours = currentNeighbourhood.Value;
+                if (!neighbourhood.ContainsKey(vertice)) {
+                    neighbourhood.Add(vertice, new HashSet<Vector3>());
+                }
+                foreach (Vector3 neighbour in neighbours)
+                {
+                    neighbourhood[vertice].Add(neighbour);
+                }
+                    
+            }
+        }
+        return neighbourhood;
     }
 }

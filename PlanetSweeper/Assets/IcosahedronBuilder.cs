@@ -8,6 +8,7 @@ public class IcosahedronBuilder
     {
         Geometry icosahedron = new Geometry();
         GeometryTile bottomPentagon = ConstructPentagon(icosahedron, origo, radius, 0);
+        bottomPentagon.CalucalteVerticeNeightbourHood();
         GeometryTile upperPentagon = ConstructPentagon(icosahedron, origo + Vector3.up * radius, radius, 36);
 
         AddSpikes(icosahedron, bottomPentagon, upperPentagon, true);
@@ -44,7 +45,7 @@ public class IcosahedronBuilder
                 triangles.Add(i == 5 ? 1 : i + 1);
             }
 
-            return (vertices, triangles);
+            return (vertices, triangles, new List<int>{0});
         });
     }
     private static void AddHat(Geometry geometry, GeometryTile pentagon, float radius, bool up)
@@ -65,7 +66,7 @@ public class IcosahedronBuilder
                 triangles.Add(1);
                 triangles.Add(up ? 0 : 2);
 
-                return (vertices, triangles);
+                return (vertices, triangles, new List<int>());
             });
         }
     }
@@ -94,7 +95,7 @@ public class IcosahedronBuilder
                 triangles.Add(1);
                 triangles.Add(forward ? 0 : 2);
 
-                return (vertices, triangles);
+                return (vertices, triangles, new List<int>());
             });
         }
     }
