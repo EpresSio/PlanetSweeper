@@ -28,12 +28,10 @@ public class SphereBuilder
         for (int i = 1; i < 6; i++)
         {
             GeometryTile piece = new GeometryTile();
-            piece.Vertices = new List<Vector3>();
             piece.Vertices.Add(pentagon.Vertices[i]);
             piece.Vertices.Add(point);
             piece.Vertices.Add(i == 5 ? pentagon.Vertices[1] : pentagon.Vertices[i + 1]);
 
-            piece.Triangles = new List<int>();
             piece.Triangles.Add(up ? 2 : 0);
             piece.Triangles.Add(1);
             piece.Triangles.Add(up ? 0 : 2);
@@ -45,7 +43,6 @@ public class SphereBuilder
     public static GeometryTile ConstructPentagon(Vector3 origo, float radius, float rotation)
     {
         GeometryTile tile = new GeometryTile();
-        tile.Vertices = new List<Vector3>();
         tile.Vertices.Add(origo);
         Vector3 latestVertice = Quaternion.AngleAxis(rotation, Vector3.up) * Vector3.forward * radius;
         tile.Vertices.Add(latestVertice + origo);
@@ -56,7 +53,7 @@ public class SphereBuilder
             tile.Vertices.Add(vertice + origo);
             latestVertice = vertice;
         }
-        tile.Triangles = new List<int>();
+
         List<int> triangles = tile.Triangles;
         for (int i = 1; i < 6; i++)
         {
@@ -72,7 +69,6 @@ public class SphereBuilder
         for (int i = 1; i < 6; i++)
         {
             GeometryTile spike = new GeometryTile();
-            spike.Vertices = new List<Vector3>();
             spike.Vertices.Add(firstPentagon.Vertices[i]);
             if (forward) {
                 spike.Vertices.Add(secondPentagon.Vertices[i]);
@@ -81,7 +77,6 @@ public class SphereBuilder
             }
             spike.Vertices.Add(i == 5 ? firstPentagon.Vertices[1] : firstPentagon.Vertices[i+1]);
 
-            spike.Triangles = new List<int>();
             spike.Triangles.Add(forward ? 2 : 0);
             spike.Triangles.Add(1);
             spike.Triangles.Add(forward ? 0 : 2);
