@@ -55,17 +55,17 @@ public class Geometry
         }
     }
 
-    public Dictionary<Vector3, HashSet<Vector3>> CalucalteVerticeNeightbourHood() {
-        Dictionary<Vector3, HashSet<Vector3>> neighbourhood = new Dictionary<Vector3, HashSet<Vector3>>();
+    public Dictionary<Vector3, List<Vector3>> CalucalteVerticeNeightbourHood() {
+        Dictionary<Vector3, List<Vector3>> neighbourhood = new Dictionary<Vector3, List<Vector3>>();
         foreach (GeometryTile tile in _tiles)
         {
-            Dictionary<Vector3, HashSet<Vector3>> tileNeighbourhood = tile.CalucalteVerticeNeightbourHood();
-            foreach (KeyValuePair<Vector3, HashSet<Vector3>> currentNeighbourhood in tileNeighbourhood)
+            Dictionary<Vector3, List<Vector3>> tileNeighbourhood = tile.CalucalteVerticeNeightbourHood();
+            foreach (KeyValuePair<Vector3, List<Vector3>> currentNeighbourhood in tileNeighbourhood)
             {
                 Vector3 vertice = currentNeighbourhood.Key;
-                HashSet<Vector3> neighbours = currentNeighbourhood.Value;
+                List<Vector3> neighbours = currentNeighbourhood.Value;
                 if (!neighbourhood.ContainsKey(vertice)) {
-                    neighbourhood.Add(vertice, new HashSet<Vector3>());
+                    neighbourhood.Add(vertice, new List<Vector3>());
                 }
                 foreach (Vector3 neighbour in neighbours)
                 {

@@ -22,6 +22,24 @@ public class SphereBuilder : IcosahedronBuilder
 
     private static void CalculatePolygonsFromVertices(Geometry sourceGeometry, Geometry targetGeometry, float ratio)
     {
-        Dictionary<Vector3, HashSet<Vector3>> verticesNeighbourhood = sourceGeometry.CalucalteVerticeNeightbourHood();
+        Dictionary<Vector3, List<Vector3>> verticesNeighbourhood = sourceGeometry.CalucalteVerticeNeightbourHood();
+        foreach (KeyValuePair<Vector3, List<Vector3>> pair in verticesNeighbourhood)
+        {
+            Vector3 source = pair.Key;
+            List<Vector3> neighbours = pair.Value;
+            List<Vector3> polygon = new List<Vector3>();
+            
+            foreach (Vector3 neighbour in neighbours)
+            {
+                polygon.Add((1/3) * (neighbour - source));
+            }
+
+            
+
+            // targetGeometry.GenerateTile(() => {
+
+
+            // })
+        }
     }
 }

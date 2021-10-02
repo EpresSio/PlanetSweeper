@@ -24,9 +24,9 @@ public class GeometryTile
         }
     }
 
-    public Dictionary<Vector3, HashSet<Vector3>> CalucalteVerticeNeightbourHood()
+    public Dictionary<Vector3, List<Vector3>> CalucalteVerticeNeightbourHood()
     {
-        Dictionary<Vector3, HashSet<Vector3>> neighborHood = new Dictionary<Vector3, HashSet<Vector3>>();
+        Dictionary<Vector3, List<Vector3>> neighborHood = new Dictionary<Vector3, List<Vector3>>();
         int count = _triangles.Count;
         if (count == 1)
         {
@@ -59,7 +59,7 @@ public class GeometryTile
                 Vector3 currentVertex = _vertices[current];
                 if (!neighborHood.ContainsKey(currentVertex))
                 {
-                    neighborHood.Add(currentVertex, new HashSet<Vector3>());
+                    neighborHood.Add(currentVertex, new List<Vector3>());
                 }
 
                 int next = -1;
