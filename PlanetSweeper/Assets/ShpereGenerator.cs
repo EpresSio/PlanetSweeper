@@ -8,7 +8,7 @@ public class ShpereGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Geometry icosahedron = SphereBuilder.ConstuctIcosahedron(transform.localPosition, 1f);
+        Geometry icosahedron = SphereBuilder.ConstuctSphere(transform.localPosition, 1f);
         icosahedron.Tiles.ForEach(delegate(GeometryTile tile)
             {
                 TileRenderer rendererInstance = Instantiate(tileRenderer, transform.localPosition, Quaternion.identity, tileRenderer.transform.parent);

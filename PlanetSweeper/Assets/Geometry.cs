@@ -69,7 +69,10 @@ public class Geometry
                 }
                 foreach (Vector3 neighbour in neighbours)
                 {
-                    neighbourhood[vertice].Add(neighbour);
+                    List<Vector3> hood = neighbourhood[vertice];
+                    if (!hood.Contains(neighbour)) {
+                        hood.Add(neighbour);
+                    }
                 }
                     
             }
