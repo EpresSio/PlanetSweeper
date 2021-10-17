@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class SphereBuilder : IcosahedronBuilder
 {
-    public static Geometry ConstuctSphere(Vector3 origo, float radius)
+    public static Geometry ConstuctSphere(float radius)
     {
-        Geometry icosahedron = ConstuctIcosahedron(origo, radius);
+        Geometry icosahedron = ConstuctIcosahedron(radius);
         Geometry sphere1 = Truncate(icosahedron, 1/3f);
 
         return sphere1;
@@ -23,15 +23,23 @@ public class SphereBuilder : IcosahedronBuilder
     private static void CalculatePolygonsFromVertices(Geometry sourceGeometry, Geometry targetGeometry, float ratio)
     {
         Dictionary<Vector3, List<Vector3>> verticesNeighbourhood = sourceGeometry.CalucalteVerticeNeightbourHood();
+        Dictionary<VectorPair, List<Vector3>> innerIntersections = new Dictionary<VectorPair, List<Vector3>>();
         foreach (KeyValuePair<Vector3, List<Vector3>> pair in verticesNeighbourhood)
         {
             Vector3 source = pair.Key;
             List<Vector3> neighbours = pair.Value;
             List<Vector3> polygon = new List<Vector3>();
-            
+
             foreach (Vector3 neighbour in neighbours)
             {
-                polygon.Add((1f/3f) * (neighbour - source));
+                Vector3 intersect = (1f / 3f) * (neighbour - source) + source;
+                polygon.Add(intersect);
+                VectorPair vectorPair = new VectorPair(source, neighbour);
+                if (!innerIntersections.ContainsKey(vectorPair))
+                {
+                    innerIntersections.Add(vectorPair, new List<Vector3>());
+                }
+                innerIntersections[vectorPair].Add(intersect);
             }
 
             if (polygon.Count > 2) {
@@ -69,36 +77,30 @@ public class SphereBuilder : IcosahedronBuilder
 
                     Debug.Log(P + t * R == Q + u * S);
                     if (P + t * R == Q + u * S) {
-                        Vector3 intersect = P + t * R;
-                        polygon.Insert(0, intersect);
-                        targetGeometry.GenerateTile(() =>
-                            {
-                                List<Vector3> vertices = polygon;
-                                List<int> triangles = new List<int>();
-
-                                for (int i = 1; i < 6; i++)
-                                {
-                                    triangles.Add(0);
-                                    triangles.Add(i);
-                                    triangles.Add(i == 5 ? 1 : i + 1);
-                                }
-
-                                return (vertices, triangles, new List<int>{0});
-                            }
-                        );
-                        break;
+                        Vector3 intersect = A + P + t * R;
+                        targetGeometry.GenerateTile(Geometry.PolygonSetup(polygon.Count, intersect, e, polygon[0]));
+                        
                     }
                 }
             }
+        }
 
-            Debug.Log(neighbours.Count);
+        foreach (GeometryTile tile in sourceGeometry.Tiles)
+        {
+            List<Vector3> vertices = tile.Vertices;
+            // todo hexagons
+        }
+    }
 
-            
+    public class VectorPair
+    {
+        public Vector3 first;
+        public Vector3 second;
 
-            // targetGeometry.GenerateTile(() => {
-
-
-            // })
+        public VectorPair(Vector3 first, Vector3 second)
+        {
+            this.first = first;
+            this.second = second;
         }
     }
 }

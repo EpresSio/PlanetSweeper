@@ -79,4 +79,33 @@ public class Geometry
         }
         return neighbourhood;
     }
+
+    public static TileSetup PolygonSetup(int verticeCount, Vector3 origo, Vector3 normal, Vector3 onePoint)
+    {
+        return () =>
+        {
+            List<Vector3> vertices = new List<Vector3>();
+            List<int> triangles = new List<int>();
+
+            vertices.Add(origo);
+            Vector3 latestVertice = onePoint - origo;
+            vertices.Add(latestVertice + origo);
+
+            for (int i = 1; i < verticeCount; i++)
+            {
+                Vector3 vertice = Quaternion.AngleAxis(360f / verticeCount, normal) * latestVertice;
+                vertices.Add(vertice + origo);
+                latestVertice = vertice;
+            }
+
+            for (int i = 1; i < verticeCount+1; i++)
+            {
+                triangles.Add(0);
+                triangles.Add(i);
+                triangles.Add(i == verticeCount ? 1 : i + 1);
+            }
+
+            return (vertices, triangles, new List<int> { 0 });
+        };
+    }
 }

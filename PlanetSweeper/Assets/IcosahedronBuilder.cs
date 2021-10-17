@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class IcosahedronBuilder
 {
-    public static Geometry ConstuctIcosahedron(Vector3 origo, float radius)
+    public static Geometry ConstuctIcosahedron(float radius)
     {
         Geometry icosahedron = new Geometry();
-        GeometryTile bottomPentagon = ConstructPentagon(icosahedron, origo, radius, 0);
+        GeometryTile bottomPentagon = ConstructPentagon(icosahedron, Vector3.zero, radius, 0);
         bottomPentagon.CalucalteVerticeNeightbourHood();
-        GeometryTile upperPentagon = ConstructPentagon(icosahedron, origo + Vector3.up * radius, radius, 36);
+        GeometryTile upperPentagon = ConstructPentagon(icosahedron, Vector3.up * radius, radius, 36);
 
         AddSpikes(icosahedron, bottomPentagon, upperPentagon, true);
         AddSpikes(icosahedron, upperPentagon, bottomPentagon, false);
@@ -20,6 +20,7 @@ public class IcosahedronBuilder
 
         return icosahedron;
     }
+
     public static GeometryTile ConstructPentagon(Geometry geometry, Vector3 origo, float radius, float rotation)
     {
         return geometry.GenerateTile(() =>
