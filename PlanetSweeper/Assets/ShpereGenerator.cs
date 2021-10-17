@@ -5,10 +5,12 @@ using UnityEngine;
 public class ShpereGenerator : MonoBehaviour
 {
     public TileRenderer tileRenderer;
+    public float radius = 1f;
+    public int detailLevel = 1;
     // Start is called before the first frame update
     void Start()
     {
-        Geometry p = SphereBuilder.ConstuctIcosahedron(1f);
+        Geometry p = SphereBuilder.ConstuctIcosahedron(radius);
         p.Tiles.ForEach(delegate (GeometryTile tile)
         {
             TileRenderer rendererInstance = Instantiate(tileRenderer, transform.localPosition, Quaternion.identity, tileRenderer.transform.parent);
@@ -16,7 +18,7 @@ public class ShpereGenerator : MonoBehaviour
             rendererInstance.name = rendererInstance.tile.Vertices.Count.ToString();
         }
         );
-        Geometry sphere = SphereBuilder.ConstuctSphere(1f);
+        Geometry sphere = SphereBuilder.ConstuctSphere(radius, detailLevel);
         sphere.Tiles.ForEach(delegate(GeometryTile tile)
             {
                 TileRenderer rendererInstance = Instantiate(tileRenderer, transform.localPosition, Quaternion.identity, tileRenderer.transform.parent);
